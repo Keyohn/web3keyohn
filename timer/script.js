@@ -36,7 +36,8 @@ startStopButton.addEventListener('click', () => {
     clearInterval(timerInterval);
     elapsedTime = Date.now() - startTime// subtract something from here to figure out the elapsed Time
     //save the two keys to local storage below
-    
+    localStorage.setItem("elapsedTime", elapsedTime)
+    localStorage.setItem("timerName", timerNameInput.value)
     startStopButton.textContent = 'Start';
   }
   isRunning = !isRunning;
@@ -45,13 +46,14 @@ startStopButton.addEventListener('click', () => {
 // Reset button functionality
 resetButton.addEventListener('click', () => {
   clearInterval(timerInterval);
-  elapsedTime// set the elapsed time to the appropriate value
-  isRunning// update
-  startStopButton.textContent// update this
-  updateDisplay(__);//what goes in the paranthesis?
+  elapsedTime = 0 // set the elapsed time to the appropriate value
+  isRunning = false// update
+  startStopButton.textContent = "Start" // update this
+  updateDisplay(0);//what goes in the paranthesis?
   timerNameInput.value = ''; // Clear the name
   //remove the keys from local storage
-  
+  localStorage.removeItem("elapsedTime")
+  localStorage.removeItem("timerName")
 });
 
 
@@ -65,9 +67,10 @@ function updateDisplay(time) {
   
   // Update the timer every second
   function updateTimer() {
-    elapsedTime = Date.now();// subtract something from Data.now()
-    updateDisplay(__); // what should be displayed
+    elapsedTime = Date.now() - startTime;// subtract something from Data.now()
+    updateDisplay(elapsedTime); // what should be displayed
     //save something to local storage
+    localStorage.setItem("elapsedTime", elapsedTime)
   }
   
   // Pad single digits with a leading zero

@@ -6,16 +6,42 @@
   <title>Stopwatch</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <div class="stopwatch">
+<!--  -->
+<body class="bg-gradient-to-r from-blue-500 to-red-500 p-4">
+  <div class="stopwatch" id="stopwatch">
     <h1>Stopwatch</h1>
     <input type="text" id="timerName" placeholder="Enter timer name..." />
     <div class="timer" id="timer">00:00:00</div>
     <div class="buttons">
       <button id="startStop">Start</button>
+      <button id="lap">Lap</button>
       <button id="reset">Reset</button>
     </div>
+    <ol id="lapList"></ol>
+  </div>
+  <div id="Timer">
+    <h1>Timer</h1>
+    <div id="timerNums">00:00:00</div>
+    <div class="buttons">
+      <button id="startTimer">Start</button>
+      <button id="resetTimer">Reset</button>
+      <br>
+      <button id="+30sec" class="px-6 py-2 rounded-lg bg-slate-500 text-white hover:bg-slate-400 transition-all">+30sec</button>
+      <button id="+1min" class="px-6 py-2 rounded-lg bg-slate-500 text-white hover:bg-slate-400 transition-all">+1min</button>
+      <button id="+5min" class="px-6 py-2 rounded-lg bg-slate-500 text-white hover:bg-slate-400 transition-all" >+5min</button>
+      <button id="+10min" class="px-6 py-2 rounded-lg bg-slate-500 text-white hover:bg-slate-400 transition-all">+10min</button>
+    </div>
+    
+  </div>
+  <div id="Mode">
+    <button id="StopwatchMode" class="dot active">
+      
+    </button>
+    <button id="TimerMode" class="dot">
+      
+    </button>
   </div>
   <script src="script.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </body>
 </html>

@@ -7,17 +7,24 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #f4f4f9;
+    display:flex;
+    flex-direction:column;
+    gap:45px;
   }
   
-  .stopwatch {
+  .stopwatch,#Timer {
     text-align: center;
     background: #ffffff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
+
+  #Timer{
+    display: none;
+  }
   
-  .timer {
+  .timer,#timerNums {
     font-size: 3em;
     margin: 20px 0;
     color: #333333;
@@ -32,13 +39,32 @@ body {
     cursor: pointer;
   }
   
-  #startStop {
+  #startStop,#startTimer {
     background: #4caf50;
     color: white;
   }
   
-  #reset {
+  #reset,#resetTimer {
     background: #f44336;
     color: white;
   }
   
+  #Mode{
+    display:flex;
+    gap:10px;
+  }
+
+  .dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background-color: #ccc;
+    border:none;
+    cursor:pointer;
+    transition: background-color 0.3s;
+    padding:0;
+  }
+
+  .dot.active{
+    background-color: #f90;
+  }

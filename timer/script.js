@@ -164,19 +164,70 @@ const stopwatch = document.getElementById("stopwatch")
 
 ///TODO: MAKE THE timer work
 
+add30sec.addEventListener('click', () => {
+  timerDuration += THIRTY_SEC
+  updateTimerDisplay(timerDuration)
+})
+add1min.addEventListener('click', () => {
+  timerDuration += ONE_MIN
+  updateTimerDisplay(timerDuration)
+})
+add5min.addEventListener('click', () => {
+  timerDuration += FIVE_MIN
+  updateTimerDisplay(timerDuration)
+})
+add10min.addEventListener('click', () => {
+  timerDuration += TEN_MIN
+  updateTimerDisplay(timerDuration)
+})
 //make constant variables to hold the time
 const ONE_MIN = 1000 * 60 
 const FIVE_MIN = 1000 * 60 * 5
 const TEN_MIN = 10000 * 60
 const THIRTY_SEC = 1000 * 30
 
+// Audio constructor: an variable = Audio ('filename.mp3')
+let timerAlarm = new Audio('bedside-clock-alarm-95792.mp3')
+console.log(timerAlarm.src)
 // make regular js variables to hold timeRemaining in timer
 // timerElapsedTime
 // timerStartTime 
 //timerDuration
 
 let timerElapsedTime = 0
-let timerStartTime = 0
+// let timerStartTime = 0
 let timerDuration = 0
 
+// let timeRemaining = null
+
+//function to update the timer every second
+function updateActualTimer() {
+  timerElapsedTime += 1000
+  //how can we check if timerElapsedTime has exceeded timerDuration?
+  if (timerElapsedTime > timerDuration) {
+    clearInterval(timerInterval)
+    timerAlarm.play()
+  }
+  else {
+    updateTimerDisplay(timerDuration - timerElapsedTime) // what 
+  }
+}
+startTimerButton.addEventListener('click', () => {
+  console.log("startTimer clicked")
+  timerElapsedTime = 0
+  updateActualTimer()
+  timerInterval = setInterval(updateActualTimer, 1000)
+  console.log(timerInterval)
+})
 //TODO: copy line 106 and change timerDisplay to timerNum
+function updateTimerDisplay(time) {
+  const hours = Math.floor(time / (1000 * 60 * 60));
+  const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((time % (1000 * 60)) / 1000);
+  timerNums.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+}
+resetTimerButton.addEventListener('click', () => {
+  clearInterval(timerInterval)
+  timerDuration = 0
+  updateTimerDisplay(timerDuration)
+})
